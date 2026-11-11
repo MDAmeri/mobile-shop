@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /////////////////////////
+  // config options here //
+  /////////////////////////
   experimental: {
     agentFeedback: true,
   },
@@ -14,6 +16,19 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Configure allowed external image domains for Next.js Image Optimization //
+  /////////////////////////////////////////////////////////////////////////////
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
