@@ -1,9 +1,15 @@
-import Image from "next/image";
+import React from "react";
+import { MobileRepository } from "@/infrastructure/api/mobile.repository";
+import StoreClientShell from "@/components/layout/StoreClientShell";
 
-export default function Home() {
+// Next.js Server Component: Fetches mobile data on the server for optimal SEO and initial load speed
+export default async function HomePage() {
+  const result = await MobileRepository.fetchAllMobiles();
+
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <StoreClientShell
+      initialMobiles={result.isSuccess ? result.data : []}
+      serverError={result.isSuccess ? null : result.error.message}
+    />
   );
 }
